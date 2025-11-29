@@ -114,3 +114,45 @@ The client will be a React-based SPA.
 5.  Build the basic backend API endpoints and test with sample data.
 6.  Build the frontend components and connect them to the backend API.
 7.  Implement animations with Framer Motion.
+
+---
+
+## Progress History
+
+This section documents the major development steps completed.
+
+### 1. Project Initialization
+- Initialized the project as a Git repository.
+- Created the initial `GEMINI.md` blueprint.
+- Set up a `.gitignore` file to exclude `node_modules`, build artifacts, and environment variables.
+
+### 2. Backend Setup
+- Initialized a Node.js project in the `/server` directory.
+- Installed dependencies: `express`, `mongoose`, `cors`, `dotenv`, and `nodemon`.
+- Configured the server to use ES Modules (`"type": "module"`).
+- Created the basic Express server setup in `server.js`.
+- Implemented a basic API endpoint (`/api/projects`) with a controller and route.
+
+### 3. Frontend Setup
+- Set up a React project in the `/client` directory using Vite.
+- Installed and configured Tailwind CSS v4, including the `@tailwindcss/vite` plugin for proper integration.
+- Installed and configured ESLint for a React project, including `eslint-plugin-react` and custom rules for a better development experience.
+
+### 4. Component & Layout Implementation
+- Developed a component-based architecture with the following components:
+  - `Navbar.jsx`: For site navigation.
+  - `Hero.jsx`: For the main landing page view.
+  - `ProjectCard.jsx`: To display individual projects.
+  - `ProjectList.jsx`: To display a grid of projects.
+  - `Footer.jsx`: For the site footer.
+  - `Layout.jsx`: A main layout component to wrap all pages.
+- Implemented client-side routing using `react-router-dom`.
+- Created pages for `Home`, `Work`, and `About`.
+- Structured the application to use a main `Layout` with page content rendered via `Outlet`.
+
+### 5. Animation & Data
+- Integrated `framer-motion` for animations.
+- Added page transitions using `AnimatePresence`.
+- Implemented entry animations for the `Hero` component.
+- Created a staggered animation for the `ProjectList` where cards animate in as they are scrolled into view.
+- Refactored the project to use local mock data from `/client/src/constants/index.js` for the project list, decoupling it from the backend for the initial build.
