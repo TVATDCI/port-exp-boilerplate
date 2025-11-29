@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <section className="bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center min-h-screen">
+    <section className="bg-linear-to-br from-gray-900 to-black text-white flex items-center justify-center min-h-screen">
       <div className="mx-auto px-5 text-center max-w-4xl">
         <motion.h1
           className="text-5xl md:text-7xl font-bold mb-4 leading-tight"
