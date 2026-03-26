@@ -65,57 +65,62 @@ A full-stack quick-start template for React projects with Tailwind CSS v4, Expre
 │   │   └── routes/             # Express routes
 │   ├── scripts/                 # Seed scripts
 │   ├── .env
+│   ├── .env.example
 │   ├── package.json
 │   └── server.js
+├── package.json                 # Root package (runs both)
 ├── .gitignore
 └── README.md
 ```
 
-## Getting Started
-
-### 1. Install dependencies
+## Quick Start
 
 ```bash
-# Frontend
-cd client && npm install
+# 1. Install all dependencies (auto-installs client & server)
+npm install
 
-# Backend
-cd server && npm install
-```
-
-### 2. Configure environment variables
-
-```bash
-# Server - copy and edit
-cp server/.env.example server/.env
-# Edit server/.env with your MongoDB URI
-
-# Client (optional - has defaults)
-cp client/.env.example client/.env
-```
-
-### 3. Run development servers
-
-```bash
-# Terminal 1 - Backend
-cd server && npm run dev
-
-# Terminal 2 - Frontend
-cd client && npm run dev
+# 2. Run both servers simultaneously
+npm run dev
 ```
 
 - **Frontend**: http://localhost:5173
 - **Backend**: http://localhost:5001
 
-### 4. Format & lint code
+## Available Scripts
 
-```bash
-# Frontend
-cd client && npm run format
-cd client && npm run lint
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Run both client & server |
+| `npm run dev:client` | Run only client |
+| `npm run dev:server` | Run only server |
+| `npm run format` | Format all code |
+| `npm run lint` | Lint client code |
 
-# Backend
-cd server && npm run format
+## Environment Variables
+
+### Server (.env)
+Copy `server/.env.example` to `server/.env` and configure:
+
+```
+# Server
+MONGO_URI=mongodb://localhost:27017/portfolio
+PORT=5001
+NODE_ENV=development
+
+# Admin
+ADMIN_EMAIL=admin@example.com
+ADMIN_PASSWORD=changeme123
+
+# Auth (required for production)
+JWT_SECRET=your-secret-key-here
+```
+
+### Client (.env)
+Copy `client/.env.example` to `client/.env` (optional - has defaults):
+
+```
+VITE_API_URL=http://localhost:5001/api
+VITE_APP_TITLE=My Portfolio
 ```
 
 ## API Endpoints
