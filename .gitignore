@@ -18,6 +18,8 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+/client/.env
+/server/.env
 
 # IDEs and editors
 .idea/
