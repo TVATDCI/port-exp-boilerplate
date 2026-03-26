@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ProjectCard from './ProjectCard';
-import { projects } from '../constants'; // Import mock projects
+import { API_ENDPOINTS } from '../api';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -14,36 +14,35 @@ const containerVariants = {
 };
 
 const ProjectList = () => {
-  // No more fetching, directly use mock projects
-  // const [projects, setProjects] = useState([]);
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // useEffect(() => {
-  //   fetch('http://localhost:5001/api/projects')
-  //     .then(response => {
-  //       if (!response.ok) {
-  //         throw new Error('Network response was not ok');
-  //       }
-  //       return response.json();
-  //     })
-  //     .then(data => {
-  //       setProjects(data);
-  //       setLoading(false);
-  //     })
-  //     .catch(error => {
-  //       setError(error.message);
-  //       setLoading(false);
-  //     });
-  // }, []);
+  useEffect(() => {
+    fetch(API_ENDPOINTS.projects)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setProjects(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error.message);
+        setLoading(false);
+      });
+  }, []);
 
-  // if (loading) {
-  //   return <div className="text-center text-white">Loading projects...</div>;
-  // }
+  if (loading) {
+    return <div className="text-center text-white">Loading projects...</div>;
+  }
 
-  // if (error) {
-  //   return <div className="text-center text-red-500">Error: {error}</div>;
-  // }
+  if (error) {
+    return <div className="text-center text-red-500">Error: {error}</div>;
+  }
 
   return (
     <section className="py-12 px-4">
@@ -64,7 +63,7 @@ const ProjectList = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          {projects.map(project => (
+          {projects.map((project) => (
             <ProjectCard key={project._id} project={project} />
           ))}
         </motion.div>
@@ -74,4 +73,3 @@ const ProjectList = () => {
 };
 
 export default ProjectList;
-

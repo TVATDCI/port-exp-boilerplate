@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_ENDPOINTS } from '../api';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -6,7 +7,7 @@ const ContactForm = () => {
     email: '',
     message: '',
   });
-  const [status, setStatus] = useState(''); // 'idle', 'submitting', 'success', 'error'
+  const [status, setStatus] = useState('');
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -17,7 +18,7 @@ const ContactForm = () => {
     setStatus('submitting');
 
     try {
-      const response = await fetch('http://localhost:5001/api/contact', {
+      const response = await fetch(API_ENDPOINTS.contact, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -32,7 +33,7 @@ const ContactForm = () => {
       const result = await response.json();
       console.log('Form submission successful:', result);
       setStatus('success');
-      setFormData({ name: '', email: '', message: '' }); // Clear form
+      setFormData({ name: '', email: '', message: '' });
     } catch (error) {
       console.error('Form submission error:', error);
       setStatus('error');
