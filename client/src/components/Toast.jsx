@@ -16,8 +16,8 @@ const Toast = () => {
             notification.type === 'success'
               ? 'bg-green-600'
               : notification.type === 'error'
-              ? 'bg-red-600'
-              : 'bg-gray-800'
+                ? 'bg-red-600'
+                : 'bg-gray-800'
           } text-white`}
         >
           {notification.message}

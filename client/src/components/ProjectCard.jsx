@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const cardVariants = {
   hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
 };
 
 const ProjectCard = ({ project }) => {
@@ -19,7 +19,10 @@ const ProjectCard = ({ project }) => {
         <p className="text-gray-400 mb-4">{project.description}</p>
         <div className="flex flex-wrap gap-2 mb-4">
           {project.tags.map((tag, index) => (
-            <span key={index} className="bg-gray-700 text-gray-300 text-sm font-medium px-2.5 py-0.5 rounded">
+            <span
+              key={index}
+              className="bg-gray-700 text-gray-300 text-sm font-medium px-2.5 py-0.5 rounded"
+            >
               {tag}
             </span>
           ))}

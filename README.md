@@ -35,7 +35,8 @@ A full-stack quick-start template for React projects with Tailwind CSS v4, Expre
 │   │   │   ├── Layout.jsx
 │   │   │   ├── Navbar.jsx
 │   │   │   ├── ProjectCard.jsx
-│   │   │   └── ProjectList.jsx
+│   │   │   ├── ProjectList.jsx
+│   │   │   └── Toast.jsx
 │   │   ├── context/             # React Context (Auth)
 │   │   ├── pages/
 │   │   │   ├── About.jsx
@@ -110,11 +111,11 @@ cd client && npm run dev
 
 ```bash
 # Frontend
-cd client && npm run prettier
+cd client && npm run format
 cd client && npm run lint
 
 # Backend
-cd server && npm run prettier
+cd server && npm run format
 ```
 
 ## API Endpoints

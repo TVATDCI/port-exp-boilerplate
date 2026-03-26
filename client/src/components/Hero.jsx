@@ -1,6 +1,6 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -10,7 +10,7 @@ const Hero = () => {
           className="text-5xl md:text-7xl font-bold mb-4 leading-tight"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
         >
           Creative Developer & Designer
         </motion.h1>
@@ -18,16 +18,16 @@ const Hero = () => {
           className="mb-8 leading-relaxed text-lg text-gray-400 max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
         >
-          I design and code beautifully simple things, and I love what I do.
-          Welcome to my digital garden.
+          I design and code beautifully simple things, and I love what I do. Welcome to my digital
+          garden.
         </motion.p>
         <motion.div
           className="flex justify-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
         >
           <Link
             to="/work"

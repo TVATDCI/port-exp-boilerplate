@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { motion } from 'framer-motion';
@@ -38,15 +38,11 @@ const Login = () => {
       >
         <h2 className="text-3xl font-bold text-white mb-6 text-center">Login</h2>
 
-        {error && (
-          <div className="bg-red-500 text-white p-3 rounded mb-4">{error}</div>
-        )}
+        {error && <div className="bg-red-500 text-white p-3 rounded mb-4">{error}</div>}
 
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-gray-300 text-sm font-bold mb-2">
-              Email
-            </label>
+            <label className="block text-gray-300 text-sm font-bold mb-2">Email</label>
             <input
               type="email"
               name="email"
@@ -58,9 +54,7 @@ const Login = () => {
           </div>
 
           <div className="mb-6">
-            <label className="block text-gray-300 text-sm font-bold mb-2">
-              Password
-            </label>
+            <label className="block text-gray-300 text-sm font-bold mb-2">Password</label>
             <input
               type="password"
               name="password"
@@ -81,7 +75,7 @@ const Login = () => {
         </form>
 
         <p className="text-gray-400 mt-4 text-center">
-          Don't have an account?{' '}
+          Don&apos;t have an account?{' '}
           <Link to="/register" className="text-sky-500 hover:underline">
             Register
           </Link>

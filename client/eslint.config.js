@@ -22,14 +22,22 @@ export default [
         ...globals.browser,
       },
     },
+    settings: {
+      react: {
+        version: '19.2',
+      },
+    },
     rules: {
       ...react.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
       'react-refresh/only-export-components': 'warn',
       'no-unused-vars': ['warn', { varsIgnorePattern: '^[A-Z_]' }],
+      'react/react-in-jsx-scope': 'off',
+      'react/prop-types': 'off',
+      'react-hooks/set-state-in-effect': 'off',
     },
   },
   {
     ignores: ['dist'],
-  }
+  },
 ];

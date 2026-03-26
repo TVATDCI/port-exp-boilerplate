@@ -44,15 +44,11 @@ const Register = () => {
       >
         <h2 className="text-3xl font-bold text-white mb-6 text-center">Register</h2>
 
-        {error && (
-          <div className="bg-red-500 text-white p-3 rounded mb-4">{error}</div>
-        )}
+        {error && <div className="bg-red-500 text-white p-3 rounded mb-4">{error}</div>}
 
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-gray-300 text-sm font-bold mb-2">
-              Email
-            </label>
+            <label className="block text-gray-300 text-sm font-bold mb-2">Email</label>
             <input
               type="email"
               name="email"
@@ -64,9 +60,7 @@ const Register = () => {
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-300 text-sm font-bold mb-2">
-              Password
-            </label>
+            <label className="block text-gray-300 text-sm font-bold mb-2">Password</label>
             <input
               type="password"
               name="password"
@@ -79,9 +73,7 @@ const Register = () => {
           </div>
 
           <div className="mb-6">
-            <label className="block text-gray-300 text-sm font-bold mb-2">
-              Confirm Password
-            </label>
+            <label className="block text-gray-300 text-sm font-bold mb-2">Confirm Password</label>
             <input
               type="password"
               name="confirmPassword"
