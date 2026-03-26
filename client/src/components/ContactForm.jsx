@@ -52,7 +52,7 @@ const ContactForm = () => {
           name="name"
           value={formData.name}
           onChange={handleChange}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-700 border-gray-600"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 bg-gray-700 border-gray-600"
           required
         />
       </div>
@@ -66,7 +66,7 @@ const ContactForm = () => {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-700 border-gray-600"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 bg-gray-700 border-gray-600"
           required
         />
       </div>
@@ -80,14 +80,14 @@ const ContactForm = () => {
           value={formData.message}
           onChange={handleChange}
           rows="5"
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-700 border-gray-600"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 bg-gray-700 border-gray-600"
           required
         ></textarea>
       </div>
       <div className="flex items-center justify-between">
         <button
           type="submit"
-          className="bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
           disabled={status === 'submitting'}
         >
           {status === 'submitting' ? 'Sending...' : 'Send Message'}
