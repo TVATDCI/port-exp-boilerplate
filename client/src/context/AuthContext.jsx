@@ -6,6 +6,7 @@ const AuthContext = createContext(null);
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [notification, setNotification] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -15,6 +16,11 @@ export const AuthProvider = ({ children }) => {
     }
     setLoading(false);
   }, []);
+
+  const showNotification = (message, type = 'success') => {
+    setNotification({ message, type });
+    setTimeout(() => setNotification(null), 3000);
+  };
 
   const login = async (email, password) => {
     const response = await fetch(API_ENDPOINTS.login, {
@@ -32,6 +38,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem('token', data._id);
     localStorage.setItem('user', JSON.stringify(data));
     setUser(data);
+    showNotification('Login successful!');
     return data;
   };
 
@@ -48,6 +55,7 @@ export const AuthProvider = ({ children }) => {
       throw new Error(data.message || 'Registration failed');
     }
 
+    showNotification('Registration successful! Please login.');
     return data;
   };
 
@@ -55,10 +63,11 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     setUser(null);
+    showNotification('Logged out successfully!');
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, register, logout, loading, notification }}>
       {children}
     </AuthContext.Provider>
   );
