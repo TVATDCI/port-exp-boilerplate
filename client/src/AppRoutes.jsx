@@ -6,7 +6,9 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import Work from './pages/Work';
 import About from './pages/About';
-import Contact from './pages/Contact'; // Import the Contact page
+import Contact from './pages/Contact';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 const AppRoutes = () => {
   const location = useLocation();
@@ -18,9 +20,10 @@ const AppRoutes = () => {
           <Route index element={<Home />} />
           <Route path="work" element={<Work />} />
           <Route path="about" element={<About />} />
-          <Route path="contact" element={<Contact />} /> {/* Add the Contact route */}
-          {/* Add other routes here */}
+          <Route path="contact" element={<Contact />} />
         </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </AnimatePresence>
   );

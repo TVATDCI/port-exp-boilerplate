@@ -1,28 +1,34 @@
-# React + Tailwind v4 Template
+# React + Tailwind v4 + Express Template
 
-A quick-start template for React projects with Tailwind CSS v4, Framer Motion, and React Router.
+A full-stack quick-start template for React projects with Tailwind CSS v4, Express backend, MongoDB, and authentication.
 
 ## Tech Stack
 
+### Frontend
 | Category | Technology |
 |----------|------------|
-| Frontend | React 19.2.4 |
+| Framework | React 19.2.4 |
 | Build Tool | Vite 7 |
 | Styling | Tailwind CSS 4.2.1 |
 | Animation | Framer Motion |
 | Routing | React Router DOM 7 |
-| Linting | ESLint |
-| Formatting | Prettier |
+
+### Backend
+| Category | Technology |
+|----------|------------|
+| Runtime | Node.js |
+| Framework | Express 5.2.1 |
+| Database | MongoDB + Mongoose 9.3.3 |
+| Auth | bcryptjs |
 
 ## Project Structure
 
 ```
 /
 ├── client/
-│   ├── public/
 │   ├── src/
-│   │   ├── assets/
-│   │   ├── components/
+│   │   ├── api/                 # API configuration
+│   │   ├── components/          # Reusable components
 │   │   │   ├── ContactForm.jsx
 │   │   │   ├── Footer.jsx
 │   │   │   ├── Hero.jsx
@@ -30,25 +36,33 @@ A quick-start template for React projects with Tailwind CSS v4, Framer Motion, a
 │   │   │   ├── Navbar.jsx
 │   │   │   ├── ProjectCard.jsx
 │   │   │   └── ProjectList.jsx
+│   │   ├── context/             # React Context (Auth)
 │   │   ├── pages/
 │   │   │   ├── About.jsx
 │   │   │   ├── Contact.jsx
 │   │   │   ├── Home.jsx
+│   │   │   ├── Login.jsx
+│   │   │   ├── Register.jsx
 │   │   │   └── Work.jsx
-│   │   ├── constants/
+│   │   ├── constants/           # Mock data (optional)
+│   │   ├── assets/
 │   │   ├── App.jsx
 │   │   ├── AppRoutes.jsx
 │   │   ├── main.jsx
 │   │   └── index.css
+│   ├── .env.example
 │   ├── .prettierrc
 │   ├── eslint.config.js
 │   ├── index.html
 │   ├── package.json
 │   └── vite.config.js
 ├── server/
-│   ├── controllers/
-│   ├── models/
-│   ├── routes/
+│   ├── src/
+│   │   ├── config/              # DB & env config
+│   │   ├── controllers/         # Route handlers
+│   │   ├── models/             # Mongoose schemas
+│   │   └── routes/             # Express routes
+│   ├── scripts/                 # Seed scripts
 │   ├── .env
 │   ├── package.json
 │   └── server.js
@@ -61,33 +75,89 @@ A quick-start template for React projects with Tailwind CSS v4, Framer Motion, a
 ### 1. Install dependencies
 
 ```bash
-cd client
-npm install
+# Frontend
+cd client && npm install
+
+# Backend
+cd server && npm install
 ```
 
-### 2. Run development server
+### 2. Configure environment variables
 
 ```bash
-npm run dev
+# Server - copy and edit
+cp server/.env.example server/.env
+# Edit server/.env with your MongoDB URI
+
+# Client (optional - has defaults)
+cp client/.env.example client/.env
 ```
 
-### 3. Format code
+### 3. Run development servers
 
 ```bash
-npm run prettier
+# Terminal 1 - Backend
+cd server && npm run dev
+
+# Terminal 2 - Frontend
+cd client && npm run dev
 ```
 
-### 4. Lint code
+- **Frontend**: http://localhost:5173
+- **Backend**: http://localhost:5001
+
+### 4. Format & lint code
 
 ```bash
-npm run lint
+# Frontend
+cd client && npm run prettier
+cd client && npm run lint
+
+# Backend
+cd server && npm run prettier
 ```
+
+## API Endpoints
+
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| GET | `/api/projects` | Get all projects | Public |
+| POST | `/api/contact` | Submit contact form | Public |
+| POST | `/api/users/register` | Register new user | Public |
+| POST | `/api/users/login` | User login | Public |
+| GET | `/api/users/profile` | Get user profile | Protected |
+
+## Authentication
+
+The client includes authentication context:
+- `useAuth()` hook for accessing auth state
+- Login/Register pages included
+- Token stored in localStorage
+
+## Seeding Admin User
+
+```bash
+cd server && npm run seed
+```
+
+Set `ADMIN_EMAIL` and `ADMIN_PASSWORD` in `server/.env`.
 
 ## Tailwind CSS v4
 
 This template uses Tailwind CSS v4, which no longer requires `tailwind.config.js`. Configuration is done directly in CSS using `@import "tailwindcss";`.
 
-To customize themes or add plugins, edit `client/src/index.css`.
+## Troubleshooting
+
+### Port already in use
+Kill existing processes:
+```bash
+lsof -ti:5001 | xargs kill -9  # Server
+lsof -ti:5173 | xargs kill -9  # Client
+```
+
+### MongoDB connection error
+- Check your `MONGO_URI` in `server/.env`
+- Ensure your IP is whitelisted in MongoDB Atlas
 
 ## License
 
