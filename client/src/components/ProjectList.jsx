@@ -111,4 +111,7 @@ const ProjectList = () => {
   );
 };
 
+// [Last Session] Implemented client-side filtering by category
+// Filter logic: activeFilter state filters projects by category property
+// Future: Add server-side filtering via query params (e.g., ?category=MERN)
 export default ProjectList;
