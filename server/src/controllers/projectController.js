@@ -1,5 +1,3 @@
-// In a real app, you would fetch this data from the database.
-// For now, we'll use a static array of projects.
 const sampleProjects = [
   {
     _id: '1',
@@ -9,6 +7,8 @@ const sampleProjects = [
     imageUrl: 'https://via.placeholder.com/400x250/FF5733/FFFFFF?text=Project+1',
     projectUrl: 'https://github.com/yourusername/project1',
     tags: ['React', 'Tailwind CSS', 'Framer Motion', 'Vite'],
+    category: 'Frontend',
+    featured: true,
   },
   {
     _id: '2',
@@ -18,6 +18,8 @@ const sampleProjects = [
     imageUrl: 'https://via.placeholder.com/400x250/33FF57/FFFFFF?text=Project+2',
     projectUrl: 'https://github.com/yourusername/project2',
     tags: ['MERN Stack', 'Redux', 'Stripe API'],
+    category: 'MERN',
+    featured: true,
   },
   {
     _id: '3',
@@ -27,6 +29,8 @@ const sampleProjects = [
     imageUrl: 'https://via.placeholder.com/400x250/3357FF/FFFFFF?text=Project+3',
     projectUrl: 'https://github.com/yourusername/project3',
     tags: ['Node.js', 'Express', 'Socket.io', 'React'],
+    category: 'MERN',
+    featured: false,
   },
   {
     _id: '4',
@@ -36,6 +40,8 @@ const sampleProjects = [
     imageUrl: 'https://via.placeholder.com/400x250/FF33A1/FFFFFF?text=Project+4',
     projectUrl: 'https://github.com/yourusername/project4',
     tags: ['React', 'Context API', 'CSS Modules'],
+    category: 'Frontend',
+    featured: false,
   },
   {
     _id: '5',
@@ -45,22 +51,28 @@ const sampleProjects = [
     imageUrl: 'https://via.placeholder.com/400x250/A1FF33/FFFFFF?text=Project+5',
     projectUrl: 'https://github.com/yourusername/project5',
     tags: ['React', 'API Integration', 'Axios'],
+    category: 'APIs',
+    featured: true,
   },
   {
     _id: '6',
-    title: 'Project One',
-    description: 'This is the description for project one.',
-    imageUrl: 'https://via.placeholder.com/300',
-    projectUrl: '#',
-    tags: ['React', 'Node.js', 'Web Design'],
+    title: 'ML Image Classifier',
+    description: 'A machine learning experiment that classifies images using TensorFlow.js.',
+    imageUrl: 'https://via.placeholder.com/400x250/FF9500/FFFFFF?text=Project+6',
+    projectUrl: 'https://github.com/yourusername/project6',
+    tags: ['TensorFlow.js', 'React', 'ML'],
+    category: 'Experiments',
+    featured: false,
   },
   {
     _id: '7',
-    title: 'Project Two',
-    description: 'This is the description for project two.',
-    imageUrl: 'https://via.placeholder.com/300',
-    projectUrl: '#',
-    tags: ['Vue', 'Firebase', 'Animation'],
+    title: 'Three.js 3D Scene',
+    description: 'An interactive 3D scene built with Three.js and WebGL.',
+    imageUrl: 'https://via.placeholder.com/400x250/00CED1/FFFFFF?text=Project+7',
+    projectUrl: 'https://github.com/yourusername/project7',
+    tags: ['Three.js', 'WebGL', 'React'],
+    category: 'Experiments',
+    featured: false,
   },
 ];
 
@@ -68,7 +80,5 @@ const sampleProjects = [
 // @route   GET /api/projects
 // @access  Public
 export const getProjects = (req, res) => {
-  // Later, this will be:
-  // const projects = await Project.find();
   res.json(sampleProjects);
 };
