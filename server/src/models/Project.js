@@ -11,7 +11,16 @@ const projectSchema = new mongoose.Schema({
   },
   imageUrl: String,
   projectUrl: String,
-  tags: [String]
+  tags: [String],
+  category: {
+    type: String,
+    enum: ['MERN', 'APIs', 'Frontend', 'Experiments'],
+    default: 'Frontend'
+  },
+  featured: {
+    type: Boolean,
+    default: false
+  }
 });
 
 const Project = mongoose.model('Project', projectSchema);
