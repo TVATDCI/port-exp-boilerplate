@@ -5,21 +5,23 @@ A full-stack quick-start template for React projects with Tailwind CSS v4, Expre
 ## Tech Stack
 
 ### Frontend
-| Category | Technology |
-|----------|------------|
-| Framework | React 19.2.4 |
-| Build Tool | Vite 7 |
-| Styling | Tailwind CSS 4.2.1 |
-| Animation | Framer Motion |
-| Routing | React Router DOM 7 |
+
+| Category   | Technology         |
+| ---------- | ------------------ |
+| Framework  | React 19.2.4       |
+| Build Tool | Vite 7             |
+| Styling    | Tailwind CSS 4.2.1 |
+| Animation  | Framer Motion      |
+| Routing    | React Router DOM 7 |
 
 ### Backend
-| Category | Technology |
-|----------|------------|
-| Runtime | Node.js |
-| Framework | Express 5.2.1 |
-| Database | MongoDB + Mongoose 9.3.3 |
-| Auth | bcryptjs |
+
+| Category  | Technology               |
+| --------- | ------------------------ |
+| Runtime   | Node.js                  |
+| Framework | Express 5.2.1            |
+| Database  | MongoDB + Mongoose 9.3.3 |
+| Auth      | bcryptjs                 |
 
 ## Project Structure
 
@@ -102,17 +104,18 @@ npm run dev
 
 ## Available Scripts
 
-| Script | Description |
-|--------|-------------|
-| `npm run dev` | Run both client & server |
-| `npm run dev:client` | Run only client |
-| `npm run dev:server` | Run only server |
-| `npm run format` | Format all code |
-| `npm run lint` | Lint client code |
+| Script               | Description              |
+| -------------------- | ------------------------ |
+| `npm run dev`        | Run both client & server |
+| `npm run dev:client` | Run only client          |
+| `npm run dev:server` | Run only server          |
+| `npm run format`     | Format all code          |
+| `npm run lint`       | Lint client code         |
 
 ## Environment Variables
 
 ### Server (.env)
+
 Copy `server/.env.example` to `server/.env` and configure:
 
 ```
@@ -130,6 +133,7 @@ JWT_SECRET=your-secret-key-here
 ```
 
 ### Client (.env)
+
 Copy `client/.env.example` to `client/.env` (optional - has defaults):
 
 ```
@@ -139,17 +143,18 @@ VITE_APP_TITLE=My Portfolio
 
 ## API Endpoints
 
-| Method | Endpoint | Description | Auth |
-|--------|----------|-------------|------|
-| GET | `/api/projects` | Get all projects | Public |
-| POST | `/api/contact` | Submit contact form | Public |
-| POST | `/api/users/register` | Register new user | Public |
-| POST | `/api/users/login` | User login | Public |
-| GET | `/api/users/profile` | Get user profile | Protected |
+| Method | Endpoint              | Description         | Auth      |
+| ------ | --------------------- | ------------------- | --------- |
+| GET    | `/api/projects`       | Get all projects    | Public    |
+| POST   | `/api/contact`        | Submit contact form | Public    |
+| POST   | `/api/users/register` | Register new user   | Public    |
+| POST   | `/api/users/login`    | User login          | Public    |
+| GET    | `/api/users/profile`  | Get user profile    | Protected |
 
 ## Authentication
 
 The client includes authentication context:
+
 - `useAuth()` hook for accessing auth state
 - Login/Register pages included
 - Token stored in localStorage
@@ -171,6 +176,7 @@ This template now includes a complete design system inspired by the framer-port 
 The design system uses OKLCH color space for consistent theming:
 
 **Brand Colors:**
+
 - `lagoon` - Primary teal (#4ECDC4)
 - `coral` - Warm accent (#FF6B6B)
 - `driftwood` - Muted tan (#C4A77D)
@@ -178,6 +184,7 @@ The design system uses OKLCH color space for consistent theming:
 - `dusk` - Golden highlight (#F39C12)
 
 **Semantic Colors:**
+
 - `surface-base` - Main background
 - `surface-elevated` - Card/elevated surfaces
 - `text-primary` - Main text
@@ -198,13 +205,14 @@ The design system uses OKLCH color space for consistent theming:
 ### Theme Toggle
 
 Dark/light mode is supported via `ThemeProvider`:
+
 - Uses `data-theme` attribute on `<html>` element
 - Persists preference to localStorage
 - Respects system preference on first visit
 
 ```jsx
 // Using the theme hook
-import useTheme from './hooks/useTheme';
+import useTheme from "./hooks/useTheme";
 
 const { isDarkMode, toggleDarkMode } = useTheme();
 ```
@@ -212,6 +220,7 @@ const { isDarkMode, toggleDarkMode } = useTheme();
 ### Animations
 
 Framer Motion presets available in `utils/motionPresets.js`:
+
 - `FADE_UP`, `FADE_DOWN`, `FADE_IN` - Entry animations
 - `HOVER_SCALE`, `HOVER_LIFT` - Hover effects
 - `PROJECT_CARD_ENTRY` - 3D card reveal
@@ -224,21 +233,22 @@ Framer Motion presets available in `utils/motionPresets.js`:
 The `use3DTilt` hook provides mouse-driven 3D rotation:
 
 ```jsx
-const { rotateX, rotateY, handleMouseMove, handleMouseLeave, isHovered } = use3DTilt({
-  stiffness: 150,      // Spring stiffness
-  damping: 20,        // Spring damping
-  rotationRange: 8,   // Max rotation in degrees
-  mouseRange: [-0.5, 0.5], // Input range
-  elementRelative: true,    // Use element vs window coords
-  disabled: false      // Disable for prefers-reduced-motion
-});
+const { rotateX, rotateY, handleMouseMove, handleMouseLeave, isHovered } =
+  use3DTilt({
+    stiffness: 150, // Spring stiffness
+    damping: 20, // Spring damping
+    rotationRange: 8, // Max rotation in degrees
+    mouseRange: [-0.5, 0.5], // Input range
+    elementRelative: true, // Use element vs window coords
+    disabled: false, // Disable for prefers-reduced-motion
+  });
 
 // Apply to motion.div
 <motion.div
   style={{ rotateX, rotateY, perspective: 1000 }}
   onMouseMove={handleMouseMove}
   onMouseLeave={handleMouseLeave}
-/>
+/>;
 ```
 
 ## Component Patterns
@@ -246,6 +256,7 @@ const { rotateX, rotateY, handleMouseMove, handleMouseLeave, isHovered } = use3D
 ### Terminal Window Style
 
 Components like `ContactForm` and `TerminalLoader` use terminal aesthetics:
+
 - Command-style input labels (`$` prefix)
 - Traffic light window controls
 - Monospace typography
@@ -254,6 +265,7 @@ Components like `ContactForm` and `TerminalLoader` use terminal aesthetics:
 ### Button Variants
 
 The `PrimeBtn` component supports:
+
 - `variant`: 'solid', 'outline', 'gradient'
 - `tone`: 'primary', 'secondary', 'white'
 
@@ -270,6 +282,18 @@ This template uses Tailwind CSS v4, which no longer requires `tailwind.config.js
 ### Custom CSS Properties
 
 The design system defines these custom properties in `index.css`:
+
+- Font families (`--font-dune`, `--font-mono`, etc.)
+- Color scales (`--color-primary-*`, `--color-avocado-*`, etc.)
+- Semantic colors (`--color-surface-base`, `--color-text-primary`, etc.)
+- Animation tokens (`--animate-blink`, `--animate-grain`, `--animate-glow-pulse`)
+- Easing curves (`--ease-smooth`, `--ease-spring`)
+- Duration tokens (`--duration-fast`, `--duration-normal`, `--duration-slow`)This template uses Tailwind CSS v4, which no longer requires `tailwind.config.js`. Configuration is done directly in CSS using `@import "tailwindcss";` with `@theme` directive.
+
+### Custom CSS Properties
+
+The design system defines these custom properties in `index.css`:
+
 - Font families (`--font-dune`, `--font-mono`, etc.)
 - Color scales (`--color-primary-*`, `--color-avocado-*`, etc.)
 - Semantic colors (`--color-surface-base`, `--color-text-primary`, etc.)
@@ -277,18 +301,7 @@ The design system defines these custom properties in `index.css`:
 - Easing curves (`--ease-smooth`, `--ease-spring`)
 - Duration tokens (`--duration-fast`, `--duration-normal`, `--duration-slow`)
 
-## Troubleshooting
-
-### Port already in use
-Kill existing processes:
-```bash
-lsof -ti:5001 | xargs kill -9  # Server
-lsof -ti:5173 | xargs kill -9  # Client
-```
-
-### MongoDB connection error
-- Check your `MONGO_URI` in `server/.env`
-- Ensure your IP is whitelisted in MongoDB Atlas
+**TBC**
 
 ## License
 
