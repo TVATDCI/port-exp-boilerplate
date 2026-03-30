@@ -10,7 +10,7 @@ The meta-skill that not just “coding” but “designing systems.”
 
 Break it dow to two parts:
 
-1. A **clean rewritten version of your agent prompt** (in this file)
+1. A **clear agent prompt** (in this file)
 2. **Concrete improvements** to make it much more powerful and realistic (in a separate file)
 
 ---
