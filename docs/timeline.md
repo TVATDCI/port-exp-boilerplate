@@ -87,7 +87,7 @@ At this stage, the project is a **functional prototype** with impressive visuals
 2. ✅ Implement request logging with morgan (commit: `985060f`)
 3. ✅ Add security headers with Helmet (commit: `4a0d6a1`)
 
-**Status: ALL PRIORITIES COMPLETE - V2 FINISHED**
+### Status: ALL PRIORITIES COMPLETE - V2 FINISHED
 
 ---
 
@@ -101,7 +101,7 @@ V2 marks the transition from **demo to functional system**. The beautiful fronte
 
 Without V2, this remains a template that looks good but doesn't work. V2 is where the system earns its credibility — where documentation matches implementation, and security isn't just a conversation but a reality.
 
-### Goals
+### Goals for V2
 
 - Connect all APIs to the database
 - Implement security best practices
@@ -113,7 +113,7 @@ Without V2, this remains a template that looks good but doesn't work. V2 is wher
 
 #### 🔧 Bug Fixes & Connections
 
-**Authentication Token Storage**
+##### Authentication Token Storage
 
 ```diff
 // client/src/context/AuthContext.jsx
@@ -455,7 +455,7 @@ projectSchema.index({ category: 1, featured: -1 }); // For filtering queries
 projectSchema.index({ createdAt: -1 }); // For sorting
 ```
 
-**Response Caching**
+### Response Caching\*\*
 
 ```javascript
 // server/src/middleware/cache.js
@@ -485,7 +485,7 @@ export const cacheMiddleware =
 router.get("/projects", cacheMiddleware(600), projectController.getProjects);
 ```
 
-**Compression**
+### Compression\*\*
 
 ```javascript
 // server/server.js
@@ -493,7 +493,7 @@ router.get("/projects", cacheMiddleware(600), projectController.getProjects);
 + app.use(compression());
 ```
 
-**Frontend Bundle Optimization**
+### Frontend Bundle Optimization
 
 ```javascript
 // client/vite.config.js
