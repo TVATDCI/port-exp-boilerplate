@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
+import helmet from 'helmet';
 import morgan from 'morgan';
 import { connectDB } from './src/config/database.js';
 import apiRoutes from './src/routes/index.js';
@@ -9,6 +10,9 @@ import { errorHandler, notFound } from './src/middleware/errorHandler.js';
 
 const app = express();
 const PORT = env.port;
+
+// Security Headers
+app.use(helmet());
 
 // CORS Configuration
 const corsOptions = {
