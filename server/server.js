@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
+import morgan from 'morgan';
 import { connectDB } from './src/config/database.js';
 import apiRoutes from './src/routes/index.js';
 import { env } from './src/config/index.js';
@@ -16,6 +17,13 @@ const corsOptions = {
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
+
+// Request Logging
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev')); // Concise colored output for dev
+} else {
+  app.use(morgan('combined')); // Standard Apache combined format for production
+}
 
 // Middleware
 app.use(cors(corsOptions));
