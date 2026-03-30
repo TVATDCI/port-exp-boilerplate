@@ -1,6 +1,6 @@
-# React + Tailwind v4 + Express Template
+# port-exp-bolerplate (React + Tailwind v4 + Express Template)
 
-A full-stack quick-start template for React projects with Tailwind CSS v4, Express backend, MongoDB, and authentication.
+A full-stack basic quick-start template for React projects with Tailwind CSS v4, Express backend, MongoDB, and authentication.
 
 ## Tech Stack
 
@@ -25,66 +25,66 @@ A full-stack quick-start template for React projects with Tailwind CSS v4, Expre
 
 ## Project Structure
 
-```
+```text
 /
 ├── client/
-│   ├── src/
-│   │   ├── api/                 # API configuration
-│   │   ├── components/          # Reusable components
-│   │   │   ├── buttons/
-│   │   │   │   └── PrimeBtn.jsx
-│   │   │   ├── ContactForm.jsx
-│   │   │   ├── Footer.jsx
-│   │   │   ├── Hero.jsx
-│   │   │   ├── Layout.jsx
-│   │   │   ├── Navbar.jsx
-│   │   │   ├── ProjectCard.jsx
-│   │   │   ├── ProjectList.jsx
-│   │   │   ├── SvgText.jsx
-│   │   │   ├── TerminalLoader.jsx
-│   │   │   ├── ThemeToggleBtn.jsx
-│   │   │   └── Toast.jsx
-│   │   ├── context/             # React Context
-│   │   │   ├── AuthContext.jsx
-│   │   │   ├── ThemeProvider.jsx
-│   │   │   └── themeContext.js
-│   │   ├── hooks/
-│   │   │   ├── use3DTilt.js    # 3D mouse tilt effect
-│   │   │   ├── useInView.js    # Intersection Observer hook
-│   │   │   └── useTheme.js     # Theme toggle hook
-│   │   ├── pages/
-│   │   │   ├── About.jsx
-│   │   │   ├── Contact.jsx
-│   │   │   ├── Home.jsx
-│   │   │   ├── Login.jsx
-│   │   │   ├── Register.jsx
-│   │   │   └── Work.jsx
-│   │   ├── utils/
-│   │   │   └── motionPresets.js # Framer Motion variants
-│   │   ├── constants/           # Mock data (optional)
-│   │   ├── assets/
-│   │   ├── App.jsx
-│   │   ├── AppRoutes.jsx
-│   │   ├── main.jsx
-│   │   └── index.css           # Tailwind v4 theme + styles
-│   ├── .env.example
-│   ├── .prettierrc
-│   ├── eslint.config.js
-│   ├── index.html
-│   ├── package.json
-│   └── vite.config.js
+│ ├── src/
+│ │ ├── api/ # API configuration
+│ │ ├── components/ # Reusable components
+│ │ │ ├── buttons/
+│ │ │ │ └── PrimeBtn.jsx
+│ │ │ ├── ContactForm.jsx
+│ │ │ ├── Footer.jsx
+│ │ │ ├── Hero.jsx
+│ │ │ ├── Layout.jsx
+│ │ │ ├── Navbar.jsx
+│ │ │ ├── ProjectCard.jsx
+│ │ │ ├── ProjectList.jsx
+│ │ │ ├── SvgText.jsx
+│ │ │ ├── TerminalLoader.jsx
+│ │ │ ├── ThemeToggleBtn.jsx
+│ │ │ └── Toast.jsx
+│ │ ├── context/ # React Context
+│ │ │ ├── AuthContext.jsx
+│ │ │ ├── ThemeProvider.jsx
+│ │ │ └── themeContext.js
+│ │ ├── hooks/
+│ │ │ ├── use3DTilt.js # 3D mouse tilt effect
+│ │ │ ├── useInView.js # Intersection Observer hook
+│ │ │ └── useTheme.js # Theme toggle hook
+│ │ ├── pages/
+│ │ │ ├── About.jsx
+│ │ │ ├── Contact.jsx
+│ │ │ ├── Home.jsx
+│ │ │ ├── Login.jsx
+│ │ │ ├── Register.jsx
+│ │ │ └── Work.jsx
+│ │ ├── utils/
+│ │ │ └── motionPresets.js # Framer Motion variants
+│ │ ├── constants/ # Mock data (optional)
+│ │ ├── assets/
+│ │ ├── App.jsx
+│ │ ├── AppRoutes.jsx
+│ │ ├── main.jsx
+│ │ └── index.css # Tailwind v4 theme + styles
+│ ├── .env.example
+│ ├── .prettierrc
+│ ├── eslint.config.js
+│ ├── index.html
+│ ├── package.json
+│ └── vite.config.js
 ├── server/
-│   ├── src/
-│   │   ├── config/              # DB & env config
-│   │   ├── controllers/         # Route handlers
-│   │   ├── models/             # Mongoose schemas
-│   │   └── routes/             # Express routes
-│   ├── scripts/                 # Seed scripts
-│   ├── .env
-│   ├── .env.example
-│   ├── package.json
-│   └── server.js
-├── package.json                 # Root package (runs both)
+│ ├── src/
+│ │ ├── config/ # DB & env config
+│ │ ├── controllers/ # Route handlers
+│ │ ├── models/ # Mongoose schemas
+│ │ └── routes/ # Express routes
+│ ├── scripts/ # Seed scripts
+│ ├── .env
+│ ├── .env.example
+│ ├── package.json
+│ └── server.js
+├── package.json # Root package (runs both)
 ├── .gitignore
 └── README.md
 ```
@@ -99,8 +99,8 @@ npm install
 npm run dev
 ```
 
-- **Frontend**: http://localhost:5173
-- **Backend**: http://localhost:5001
+- **Frontend**: <http://localhost:5173>
+- **Backend**: <http://localhost:5001>
 
 ## Available Scripts
 
@@ -138,7 +138,7 @@ Copy `client/.env.example` to `client/.env` (optional - has defaults):
 
 ```
 VITE_API_URL=http://localhost:5001/api
-VITE_APP_TITLE=My Portfolio
+VITE_APP_TITLE=port-exp-bolerplate
 ```
 
 ## API Endpoints
