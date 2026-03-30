@@ -4,12 +4,6 @@
 
 ## Improvement 1: Add “Decision Log”
 
-Create a file:
-
-```text
-decisions.md
-```
-
 Every time something changes, log:
 
 - What decision was made
