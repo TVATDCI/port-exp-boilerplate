@@ -4,6 +4,7 @@ import cors from 'cors';
 import { connectDB } from './src/config/database.js';
 import apiRoutes from './src/routes/index.js';
 import { env } from './src/config/index.js';
+import { errorHandler, notFound } from './src/middleware/errorHandler.js';
 
 const app = express();
 const PORT = env.port;
@@ -27,6 +28,10 @@ app.use('/api', apiRoutes);
 app.get('/', (req, res) => {
   res.send('Server is running with ES Modules!');
 });
+
+// Error Handling (must be last)
+app.use(notFound);
+app.use(errorHandler);
 
 // Connect to MongoDB and start server
 const startServer = async () => {
