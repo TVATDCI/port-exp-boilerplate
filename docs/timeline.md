@@ -287,6 +287,15 @@ Request → Validation → Rate Limiting → Controller → Database → Respons
 
 **V2 Status: ✅ COMPLETE - All critical items resolved**
 
+### README.md Update ✅ COMPLETE
+
+1. ✅ Update API endpoints table with full CRUD (commit: `a66e229`)
+2. ✅ Document security features (rate limiting, validation, Helmet, CORS)
+3. ✅ Add testing section with Jest documentation
+4. ✅ Add CLIENT_URL environment variable
+5. ✅ Add npm test and seed:projects scripts
+6. ✅ Update project structure with middleware files
+
 ### Next Steps to V3
 
 **Priority 1: Testing Foundation** ✅ COMPLETE
@@ -799,6 +808,7 @@ If the system grows beyond portfolio functionality:
 | V2      | Helmet security headers    | XSS, clickjacking protection                          | `4a0d6a1` | ✅ Implemented    |
 | V3      | Contact form persistence   | Never lose submissions                                | `aeababa` | ✅ Implemented    |
 | V3      | Jest test suite            | Confidence, regression prevention                     | `7bd921c` | ✅ Implemented    |
+| V3      | README.md update           | User-facing docs match internal development           | `a66e229` | ✅ Implemented    |
 | V3      | ESLint/Husky               | Code quality gates                                    | Planned   | ⏳ Pending        |
 | V3      | CI/CD Pipeline             | Automated testing, deployment                         | Planned   | ⏳ Pending        |
 
