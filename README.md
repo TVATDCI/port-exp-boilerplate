@@ -77,7 +77,13 @@ A full-stack basic quick-start template for React projects with Tailwind CSS v4,
 │ ├── src/
 │ │ ├── config/ # DB & env config
 │ │ ├── controllers/ # Route handlers
+│ │ ├── middleware/ # Express middleware
+│ │ │ ├── authMiddleware.js
+│ │ │ ├── rateLimiter.js
+│ │ │ ├── validation.js
+│ │ │ └── errorHandler.js
 │ │ ├── models/ # Mongoose schemas
+│ │ │ └── __tests__/ # Model unit tests
 │ │ └── routes/ # Express routes
 │ ├── scripts/ # Seed scripts
 │ ├── .env
@@ -104,13 +110,15 @@ npm run dev
 
 ## Available Scripts
 
-| Script               | Description              |
-| -------------------- | ------------------------ |
-| `npm run dev`        | Run both client & server |
-| `npm run dev:client` | Run only client          |
-| `npm run dev:server` | Run only server          |
-| `npm run format`     | Format all code          |
-| `npm run lint`       | Lint client code         |
+| Script                  | Description              |
+| ----------------------- | ------------------------ |
+| `npm run dev`           | Run both client & server |
+| `npm run dev:client`    | Run only client          |
+| `npm run dev:server`    | Run only server          |
+| `npm run format`        | Format all code          |
+| `npm run lint`          | Lint client code         |
+| `npm test`              | Run Jest test suite      |
+| `npm run seed:projects` | Seed projects to MongoDB |
 
 ## Environment Variables
 
@@ -123,6 +131,7 @@ Copy `server/.env.example` to `server/.env` and configure:
 MONGO_URI=mongodb://localhost:27017/portfolio
 PORT=5001
 NODE_ENV=development
+CLIENT_URL=http://localhost:5173
 
 # Admin
 ADMIN_EMAIL=admin@example.com
@@ -143,13 +152,34 @@ VITE_APP_TITLE=port-exp-bolerplate
 
 ## API Endpoints
 
-| Method | Endpoint              | Description         | Auth      |
-| ------ | --------------------- | ------------------- | --------- |
-| GET    | `/api/projects`       | Get all projects    | Public    |
-| POST   | `/api/contact`        | Submit contact form | Public    |
-| POST   | `/api/users/register` | Register new user   | Public    |
-| POST   | `/api/users/login`    | User login          | Public    |
-| GET    | `/api/users/profile`  | Get user profile    | Protected |
+### Public Endpoints
+
+| Method | Endpoint              | Description         |
+| ------ | --------------------- | ------------------- |
+| GET    | `/api/projects`       | Get all projects    |
+| POST   | `/api/contact`        | Submit contact form |
+| POST   | `/api/users/register` | Register new user   |
+| POST   | `/api/users/login`    | User login          |
+| GET    | `/api/health`         | Health check        |
+
+### Protected Endpoints (User)
+
+| Method | Endpoint             | Description         |
+| ------ | -------------------- | ------------------- |
+| GET    | `/api/users/profile` | Get user profile    |
+| PUT    | `/api/users/profile` | Update user profile |
+
+### Admin Endpoints (Admin Only)
+
+| Method | Endpoint                | Description              |
+| ------ | ----------------------- | ------------------------ |
+| POST   | `/api/projects`         | Create project           |
+| PUT    | `/api/projects/:id`     | Update project           |
+| DELETE | `/api/projects/:id`     | Delete project           |
+| GET    | `/api/contact/messages` | Get all contact messages |
+| PATCH  | `/api/contact/:id/read` | Mark message as read     |
+| DELETE | `/api/contact/:id`      | Delete contact message   |
+| GET    | `/api/users`            | Get all registered users |
 
 ## Authentication
 
@@ -159,6 +189,66 @@ The client includes authentication context:
 - Login/Register pages included
 - Token stored in localStorage
 
+## Security
+
+This template includes production-ready security features:
+
+### Rate Limiting
+
+- **Authentication endpoints**: 5 requests per 15 minutes
+- **Contact form**: 3 requests per hour
+- Prevents brute force attacks and spam
+
+### Input Validation
+
+All POST and PUT endpoints validate:
+
+- Email format and normalization
+- Password strength (minimum 8 characters)
+- Required field presence
+- Prevents XSS and injection attacks
+
+### Security Headers
+
+- Helmet.js middleware adds HTTP security headers
+- Protects against XSS, clickjacking, and other attacks
+
+### CORS Configuration
+
+- Restricted to `CLIENT_URL` environment variable
+- Prevents unauthorized cross-origin requests
+
+## Testing
+
+The server includes a Jest test suite with unit and integration tests:
+
+```bash
+# Run all tests with coverage
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+```
+
+### Test Structure
+
+```
+server/src/
+├── models/
+│   └── __tests__/
+│       ├── User.test.js
+│       └── ContactMessage.test.js
+└── controllers/
+    └── __tests__/
+        └── contactController.test.js
+```
+
+Tests cover:
+
+- User model (password hashing, validation)
+- ContactMessage model (schema validation)
+- Contact controller (form submission, error handling)
+
 ## Seeding Admin User
 
 ```bash
@@ -166,6 +256,14 @@ cd server && npm run seed
 ```
 
 Set `ADMIN_EMAIL` and `ADMIN_PASSWORD` in `server/.env`.
+
+## Seeding Projects
+
+```bash
+npm run seed:projects
+```
+
+Populates the database with sample projects for development.
 
 ## Design System (Migrated from framer-port)
 
