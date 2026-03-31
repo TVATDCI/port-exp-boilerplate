@@ -2,7 +2,7 @@
 
 A production-ready full-stack portfolio template for React developers transitioning from junior to mid-level. Features modern tooling, enterprise-grade security, comprehensive testing, Docker containerization, and CI/CD automation.
 
-**Status**: ✅ V4 Complete - Performance optimized, Dockerized, and ready for deployment
+**Status**: V4 Complete - Performance optimized, Dockerized, and ready for deployment
 
 ## About This Template
 
@@ -10,10 +10,10 @@ A production-ready full-stack portfolio template for React developers transition
 
 This isn't just a portfolio template—it's a **progressive learning system** designed for developers who:
 
-- ✅ Completed a full-stack bootcamp or course
-- ✅ Want to build a professional portfolio while leveling up their skills
-- ✅ Are preparing for technical interviews
-- ✅ Need to understand real-world production patterns
+- Completed a full-stack bootcamp or course
+- Want to build a professional portfolio while leveling up their skills
+- Are preparing for technical interviews
+- Need to understand real-world production patterns
 
 ### The Journey
 
@@ -24,7 +24,7 @@ This isn't just a portfolio template—it's a **progressive learning system** de
 
 Each phase teaches you not just _how_ to code, but _why_ we make architectural decisions.
 
-### What You'll Learn
+### Objectives/Syllabus
 
 - **Architecture**: MVC pattern, separation of concerns
 - **Security**: JWT auth, input validation, rate limiting, XSS protection
@@ -33,18 +33,18 @@ Each phase teaches you not just _how_ to code, but _why_ we make architectural d
 - **Performance**: Caching, compression, database indexing
 - **Real-world patterns**: Error handling, logging, middleware stack
 
-### Who This Is For
+### Who This Is For? - Ask yourself
 
 - **Recent bootcamp grads**: Solidify your learning with a real project
 - **Career changers**: Build credibility with production-grade code
 - **Self-taught developers**: Learn industry best practices
 - **Junior devs**: Prepare for that first promotion
 
-**Result**: You'll have a portfolio that impresses hiring managers AND the skills to back it up.
+**Result**: You'll have a portfolio that impresses yourself AND the skills to back it up.
 
-## Tech Stack
+## What i put in it ?
 
-### Frontend
+### Frontend / being refactored
 
 | Category   | Technology         |
 | ---------- | ------------------ |
@@ -182,18 +182,21 @@ npm run dev
 
 Copy `server/.env.example` to `server/.env` and configure:
 
-```
+```txt
 # Server
+
 MONGO_URI=mongodb://localhost:27017/portfolio
 PORT=5001
 NODE_ENV=development
 CLIENT_URL=http://localhost:5173
 
 # Admin
+
 ADMIN_EMAIL=admin@example.com
 ADMIN_PASSWORD=changeme123
 
 # Auth (required for production)
+
 JWT_SECRET=your-secret-key-here
 ```
 
@@ -201,7 +204,7 @@ JWT_SECRET=your-secret-key-here
 
 Copy `client/.env.example` to `client/.env` (optional - has defaults):
 
-```
+```txt
 VITE_API_URL=http://localhost:5001/api
 VITE_APP_TITLE=port-exp-bolerplate
 ```
@@ -343,7 +346,7 @@ Automated testing and deployment with GitHub Actions:
 - Automated deployment (configure for your platform)
 - Health check verification
 
-### Benefits
+### A cuo of tea
 
 - **Quality Gates**: No broken code reaches production
 - **Automated Testing**: Catch regressions early
@@ -397,7 +400,7 @@ npm run test:watch
 
 ### Test Structure
 
-```
+```text
 server/src/
 ├── models/
 │   └── __tests__/
@@ -438,7 +441,7 @@ This template now includes a complete design system inspired by the framer-port 
 
 The design system uses OKLCH color space for consistent theming:
 
-**Brand Colors:**
+**Brand Colors:** for now
 
 - `lagoon` - Primary teal (#4ECDC4)
 - `coral` - Warm accent (#FF6B6B)
@@ -553,7 +556,7 @@ The design system defines these custom properties in `index.css`:
 - Easing curves (`--ease-smooth`, `--ease-spring`)
 - Duration tokens (`--duration-fast`, `--duration-normal`, `--duration-slow`)This template uses Tailwind CSS v4, which no longer requires `tailwind.config.js`. Configuration is done directly in CSS using `@import "tailwindcss";` with `@theme` directive.
 
-### Custom CSS Properties
+### Custom CSS Properties - flexible to the size of styling
 
 The design system defines these custom properties in `index.css`:
 
@@ -564,7 +567,7 @@ The design system defines these custom properties in `index.css`:
 - Easing curves (`--ease-smooth`, `--ease-spring`)
 - Duration tokens (`--duration-fast`, `--duration-normal`, `--duration-slow`)
 
-**TBC**
+### TBC
 
 ## License
 
