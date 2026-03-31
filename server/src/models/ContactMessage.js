@@ -36,6 +36,12 @@ const contactMessageSchema = new mongoose.Schema(
   }
 );
 
+// Compound index for admin queries: unread messages first, then by date
+contactMessageSchema.index({ read: 1, createdAt: -1 });
+
+// Index for email lookups
+contactMessageSchema.index({ email: 1 });
+
 const ContactMessage = mongoose.model('ContactMessage', contactMessageSchema);
 
 export default ContactMessage;
