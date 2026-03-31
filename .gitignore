@@ -28,5 +28,4 @@ yarn-error.log*
 *.swo
 
 # preservation
-docker-compose.override.yml
 docs/specialized-server.md
