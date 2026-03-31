@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import compression from 'compression';
 import { connectDB } from './src/config/database.js';
 import apiRoutes from './src/routes/index.js';
 import { env } from './src/config/index.js';
@@ -13,6 +14,9 @@ const PORT = env.port;
 
 // Security Headers
 app.use(helmet());
+
+// Response Compression (gzip)
+app.use(compression());
 
 // CORS Configuration
 const corsOptions = {
