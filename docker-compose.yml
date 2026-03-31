@@ -1,0 +1,89 @@
+version: "3.8"
+
+services:
+  # MongoDB database
+  mongo:
+    image: mongo:7
+    container_name: portfolio-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: adminpassword
+      MONGO_INITDB_DATABASE: portfolio
+    volumes:
+      - mongo-data:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - portfolio-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Backend API
+  api:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: portfolio-api
+    restart: unless-stopped
+    ports:
+      - "5001:5001"
+    environment:
+      NODE_ENV: production
+      PORT: 5001
+      MONGO_URI: mongodb://admin:adminpassword@mongo:27017/portfolio?authSource=admin
+      JWT_SECRET: ${JWT_SECRET:-your-super-secret-jwt-key-change-in-production}
+      JWT_EXPIRES_IN: 7d
+      CLIENT_URL: http://localhost:5173
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@example.com}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-changeme123}
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    depends_on:
+      mongo:
+        condition: service_healthy
+    networks:
+      - portfolio-network
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "wget",
+          "--quiet",
+          "--tries=1",
+          "--spider",
+          "http://localhost:5001/api/health",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Frontend (optional - for full-stack deployment)
+  # Uncomment if you want to serve the frontend from Docker too
+  # client:
+  #   build:
+  #     context: ./client
+  #     dockerfile: Dockerfile
+  #   container_name: portfolio-client
+  #   restart: unless-stopped
+  #   ports:
+  #     - "5173:5173"
+  #   environment:
+  #     VITE_API_URL: http://localhost:5001/api
+  #   depends_on:
+  #     - api
+  #   networks:
+  #     - portfolio-network
+
+volumes:
+  mongo-data:
+    driver: local
+
+networks:
+  portfolio-network:
+    driver: bridge

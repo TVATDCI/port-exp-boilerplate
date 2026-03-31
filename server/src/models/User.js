@@ -27,6 +27,12 @@ const userSchema = new mongoose.Schema(
   }
 );
 
+// Index for role-based queries (admin checks)
+userSchema.index({ role: 1 });
+
+// Note: email already has unique: true in schema (line 9), which auto-creates the index
+// No need for explicit userSchema.index({ email: 1 }, { unique: true })
+
 // Hash password before saving if it's new or modified
 userSchema.pre('save', async function () {
   // Only run this function if password was actually modified

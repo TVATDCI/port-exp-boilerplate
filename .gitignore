@@ -26,3 +26,7 @@ yarn-error.log*
 .vscode/
 *.swp
 *.swo
+
+# preservation of file permissions
+docker-compose.override.yml
+docs/specialized-server.md
