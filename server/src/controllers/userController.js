@@ -2,8 +2,8 @@ import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 import { env } from '../config/index.js';
 
-const generateToken = (id) => {
-  return jwt.sign({ id }, env.jwtSecret, { expiresIn: env.jwtExpiresIn });
+const generateToken = (id, role) => {
+  return jwt.sign({ id, role }, env.jwtSecret, { expiresIn: env.jwtExpiresIn });
 };
 
 // @desc    Register a new user
@@ -20,7 +20,7 @@ export const registerUser = async (req, res) => {
 
     const user = await User.create({ email, password, role: role || 'user' });
 
-    const token = generateToken(user._id);
+    const token = generateToken(user._id, user.role);
 
     res.status(201).json({
       _id: user._id,
@@ -50,7 +50,7 @@ export const loginUser = async (req, res) => {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    const token = generateToken(user._id);
+    const token = generateToken(user._id, user.role);
 
     res.json({
       _id: user._id,
@@ -80,5 +80,25 @@ export const getUserProfile = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
+  }
+};
+
+// @desc    Get all users (admin only)
+// @route   GET /api/users
+// @access  Private (Admin only)
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find().select('-password').sort({ createdAt: -1 });
+
+    res.json({
+      success: true,
+      data: users,
+      count: users.length,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
   }
 };
