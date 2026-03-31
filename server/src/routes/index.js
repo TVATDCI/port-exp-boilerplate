@@ -25,5 +25,6 @@ router.delete('/contact/:id', protect, adminOnly, contactController.deleteContac
 router.post('/users/register', authLimiter, validateRegistration, userController.registerUser);
 router.post('/users/login', authLimiter, validateLogin, userController.loginUser);
 router.get('/users/profile', protect, userController.getUserProfile);
+router.get('/users', protect, adminOnly, userController.getAllUsers);
 
 export default router;

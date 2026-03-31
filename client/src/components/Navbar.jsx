@@ -63,6 +63,14 @@ const Navbar = () => {
             {user ? (
               <div className="flex items-center space-x-4">
                 <span className="text-text-muted text-sm font-mono">{user.email}</span>
+                {user.role === 'admin' && (
+                  <Link
+                    to="/admin"
+                    className="text-brand-primary hover:text-brand-primary/80 transition-colors font-mono text-sm uppercase tracking-wider"
+                  >
+                    Admin
+                  </Link>
+                )}
                 <button
                   onClick={logout}
                   className="text-text-muted hover:text-text-base transition-colors text-sm font-mono"

@@ -9,12 +9,42 @@ export const AuthProvider = ({ children }) => {
   const [notification, setNotification] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    const userData = localStorage.getItem('user');
-    if (token && userData) {
-      setUser(JSON.parse(userData));
-    }
-    setLoading(false);
+    const validateToken = async () => {
+      const token = localStorage.getItem('token');
+      const userData = localStorage.getItem('user');
+
+      if (token && userData) {
+        try {
+          // Validate token with server
+          const response = await fetch(API_ENDPOINTS.profile, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            // Update with fresh data from server
+            setUser(data);
+            localStorage.setItem('user', JSON.stringify(data));
+          } else {
+            // Token invalid or expired - clear storage
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            setUser(null);
+          }
+        } catch (error) {
+          // Server is down - clear storage to prevent unauthorized access
+          console.error('Auth validation error:', error);
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          setUser(null);
+        }
+      }
+      setLoading(false);
+    };
+
+    validateToken();
   }, []);
 
   const showNotification = (message, type = 'success') => {
@@ -52,7 +82,12 @@ export const AuthProvider = ({ children }) => {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.message || 'Registration failed');
+      // Handle validation errors with details
+      if (data.details && Array.isArray(data.details)) {
+        const errorMessages = data.details.map((err) => `${err.field}: ${err.message}`).join(', ');
+        throw new Error(errorMessages || data.error || 'Registration failed');
+      }
+      throw new Error(data.message || data.error || 'Registration failed');
     }
 
     showNotification('Registration successful! Please login.');
