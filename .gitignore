@@ -27,6 +27,6 @@ yarn-error.log*
 *.swp
 *.swo
 
-# preservation of file permissions
+# preservation
 docker-compose.override.yml
 docs/specialized-server.md
