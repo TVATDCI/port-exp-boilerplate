@@ -23,6 +23,23 @@ const Register = () => {
       return;
     }
 
+    // Client-side password validation
+    if (formData.password.length < 8) {
+      setError('Password must be at least 8 characters long');
+      return;
+    }
+
+    const hasLowercase = /[a-z]/.test(formData.password);
+    const hasUppercase = /[A-Z]/.test(formData.password);
+    const hasNumber = /\d/.test(formData.password);
+
+    if (!hasLowercase || !hasUppercase || !hasNumber) {
+      setError(
+        'Password must contain at least one lowercase letter, one uppercase letter, and one number'
+      );
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -70,6 +87,9 @@ const Register = () => {
               required
               minLength={8}
             />
+            <p className="text-gray-500 text-xs mt-1">
+              Must be at least 8 characters with uppercase, lowercase, and number
+            </p>
           </div>
 
           <div className="mb-6">
