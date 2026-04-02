@@ -8,14 +8,7 @@ const ProjectCard = ({ project, index }) => {
   const [ref, isInView] = useInView({ threshold: 0.1, once: true });
   const prefersReducedMotion = usePrefersReducedMotion();
 
-  const {
-    rotateX,
-    rotateY,
-    mouseY,
-    handleMouseMove,
-    handleMouseLeave,
-    isHovered,
-  } = use3DTilt({
+  const { rotateX, rotateY, mouseY, handleMouseMove, handleMouseLeave, isHovered } = use3DTilt({
     stiffness: 300,
     damping: 30,
     disabled: prefersReducedMotion,
@@ -33,6 +26,11 @@ const ProjectCard = ({ project, index }) => {
       animate={isInView ? 'visible' : 'hidden'}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onClick={() => {
+        if (project.projectUrl) {
+          window.open(project.projectUrl, '_blank', 'noopener,noreferrer');
+        }
+      }}
       style={{
         perspective: 1000,
         transformStyle: 'preserve-3d',
@@ -62,11 +60,7 @@ const ProjectCard = ({ project, index }) => {
             transition: 'scale 0.3s ease',
           }}
         >
-          <img
-            className="w-full h-full object-cover"
-            src={project.imageUrl}
-            alt={project.title}
-          />
+          <img className="w-full h-full object-cover" src={project.imageUrl} alt={project.title} />
 
           {/* Gradient overlay on hover */}
           <motion.div
@@ -99,10 +93,7 @@ const ProjectCard = ({ project, index }) => {
           >
             {project.title}
           </h3>
-          <p
-            className="text-sm mb-4 line-clamp-2"
-            style={{ color: 'var(--color-text-secondary)' }}
-          >
+          <p className="text-sm mb-4 line-clamp-2" style={{ color: 'var(--color-text-secondary)' }}>
             {project.description}
           </p>
 
@@ -123,22 +114,18 @@ const ProjectCard = ({ project, index }) => {
           </div>
 
           {/* View Project link */}
-          <a
-            href={project.projectUrl}
+          <motion.a
+            href={project.projectUrl || project.link}
+            className="inline-flex items-center gap-2 text-sm font-mono"
+            style={{ color: 'var(--color-brand-primary)' }}
+            whileHover={{ x: 5 }}
+            transition={TRANSITION_NORMAL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 font-mono text-sm font-semibold transition-colors duration-300"
-            style={{ color: 'var(--color-brand-primary)' }}
             onClick={(e) => e.stopPropagation()}
           >
-            View Project
-            <motion.span
-              animate={{ x: isHovered ? 5 : 0 }}
-              transition={TRANSITION_FAST}
-            >
-              →
-            </motion.span>
-          </a>
+            <span>View Project</span>
+          </motion.a>
         </motion.div>
 
         {/* ID badge */}
@@ -149,7 +136,7 @@ const ProjectCard = ({ project, index }) => {
             color: 'var(--color-text-secondary)',
           }}
         >
-          PRJ-{String(index + 1).padStart(3, '0')}
+          {project.title}
         </div>
 
         {/* Featured badge */}

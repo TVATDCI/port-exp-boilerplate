@@ -29,3 +29,7 @@ yarn-error.log*
 
 # preservation
 docs/specialized-server.md
+docs/styling/
+
+# kilo test
+.kilo/plans
