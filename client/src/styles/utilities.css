@@ -1,0 +1,19 @@
+/* ========================================
+   TRANSITION UTILITIES
+   ======================================== */
+
+@layer utilities {
+  .trans-smooth-500 {
+    transition-duration: var(--duration-slow);
+    transition-timing-function: var(--ease-smooth);
+  }
+
+  .trans-smooth-300 {
+    transition-duration: var(--duration-normal);
+    transition-timing-function: var(--ease-smooth);
+  }
+
+  .ease-smooth {
+    transition-timing-function: var(--ease-smooth);
+  }
+}
